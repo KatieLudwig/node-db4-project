@@ -1,17 +1,20 @@
-const path = require('path');
+const sharedConfig = {
+    client: 'sqlite3',
+    migrations: { directory: './api/data/migrations' },
+    useNullAsDefault: true,
+    pool : { afterCreate: (conn, done) => conn.run('PRAGMA foreign_keys = ON', done) },
+}
+
 
 module.exports = {
     development : {
-        client : 'sqlite3',
-        connection : {
-            filename: path.resolve(__dirname, 'api/data/recipes.db3')
-        },
-        useNullAsDefault : true,
-        migrations : {
-            directory : path.resolve(__dirname, 'api/data/migrations')
-        },
-        seeds: {
-            directory: path.resolve(__dirname, 'api/data/seeds')
-        }
-    }
+        ...sharedConfig,
+        connection: { filename: './api/data/dev.db3' },
+        seeds: { directory: './api/data/seeds' }
+    },
+    testing : {
+        ...sharedConfig,
+         connection: { filename: './api/data/test.db3' },
+    },
+    production: {}
 };
