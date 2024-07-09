@@ -1,12 +1,7 @@
-const express = require('express');
-const recipeRouter = require('./routes/recipe-router');
+const server = require('./api/server')
 
-const server = express();
+const port = process.env.PORT || 9000
 
-server.use(express.json());
-server.use('/api/recipes', recipeRouter);
-
-const PORT = process.env.PORT || 9000;
-server.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
-});
+server.listen(port, () => {
+    console.log(`Server listening on port ${port} ***\n`)
+})
