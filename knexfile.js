@@ -1,15 +1,17 @@
+const path = require('path');
+
 module.exports = {
     development : {
         client : 'sqlite3',
         connection : {
-            filename: './data/recipes.db3'
+            filename: path.resolve(__dirname, 'api/data/recipes.db3')
         },
         useNullAsDefault : true,
         migrations : {
-            directory : './migrations'
+            directory : path.resolve(__dirname, 'api/data/migrations')
         },
         seeds: {
-            directory: './seeds'
+            directory: path.resolve(__dirname, 'api/data/seeds')
         }
     }
 };
