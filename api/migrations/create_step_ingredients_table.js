@@ -1,5 +1,6 @@
 exports.up = function(knex) {
     return knex.schema.createTable('step_ingredients', table => {
+        table.increments('step_ingredient_id');
         table.integer('step_id')
             .unsigned()
             .notNullable()
@@ -14,7 +15,7 @@ exports.up = function(knex) {
             .inTable('ingredients')
             .onDelete('CASCADE')
             .onUpdate('CASCADE');
-        table.integer('quantity').notNullable();
+        table.float('quantity').notNullable();
     });
 };
 
